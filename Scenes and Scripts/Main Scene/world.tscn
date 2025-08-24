@@ -8,11 +8,17 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_tices")
 
-[node name="World TileMap" parent="." instance=ExtResource("2_ponb5")]
-
 [node name="HUD" parent="." instance=ExtResource("3_tices")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -120)
+anchor_mode = 0
+zoom = Vector2(3.114, 3.114)
+limit_left = 0
+limit_top = -120
+limit_right = 370
+
+[node name="World TileMap" parent="." instance=ExtResource("2_ponb5")]
 
 [node name="Player Character" parent="." instance=ExtResource("1_lsnyi")]
 position = Vector2(110, -27)
