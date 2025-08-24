@@ -253,14 +253,7 @@ z_index = 1
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_fd3be")
 animation = &"Idle"
-frame_progress = 0.806874
-
-[node name="Drill Sprite2" type="AnimatedSprite2D" parent="."]
-z_index = 1
-position = Vector2(0, 8)
-sprite_frames = SubResource("SpriteFrames_fd3be")
-animation = &"Idle"
-frame_progress = 0.61744
+frame_progress = 0.288787
 
 [node name="Test Figure" type="AnimatedSprite2D" parent="."]
 visible = false
