@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=24 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
 [ext_resource type="Texture2D" uid="uid://cx5lu8p7v56sa" path="res://Assets/Placeholder art/BlueMiner.png" id="2_sqwmf"]
@@ -66,6 +66,14 @@ region = Rect2(96, 48, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qk5ch"]
 atlas = ExtResource("2_sqwmf")
 region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqwmf"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oqj2"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3oqj2"]
 animations = [{
@@ -136,6 +144,17 @@ animations = [{
 "loop": true,
 "name": &"Go Up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqwmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oqj2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqwmf"]
@@ -153,31 +172,43 @@ JUMP_VELOCITY = -200.0
 
 [node name="Test Figure" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oqj2")
-animation = &"Go Right"
+animation = &"Go Up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sqwmf")
 
-[node name="Right Drill" type="Area2D" parent="."]
+[node name="Right Drill Area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Drill"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Drill Area"]
 position = Vector2(7, 0)
 shape = SubResource("CircleShape2D_sqwmf")
 
-[node name="Down Drill" type="Area2D" parent="."]
+[node name="Down Drill Area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Down Drill"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down Drill Area"]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_sqwmf")
 
-[node name="Left Drill3" type="Area2D" parent="."]
+[node name="Left Drill Area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Drill3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Drill Area"]
 position = Vector2(-5, 0)
 shape = SubResource("CircleShape2D_sqwmf")
+
+[node name="Down Drill Ray" type="RayCast2D" parent="."]
+target_position = Vector2(0, 27)
+collision_mask = 2
+
+[node name="Right Drill Ray" type="RayCast2D" parent="."]
+target_position = Vector2(23, 0)
+collision_mask = 2
+
+[node name="Left Drill Ray" type="RayCast2D" parent="."]
+target_position = Vector2(-24, 0)
+collision_mask = 2

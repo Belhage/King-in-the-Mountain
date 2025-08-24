@@ -31,6 +31,11 @@ func _ready() -> void:
 				grid_toughness[x][y] = data.get_custom_data("toughness")
 
 
+func get_drilled(drill_pos : Vector2, strength : int) :
+	var vec2i_pos = local_to_map(drill_pos)
+	decrease_toughness(strength, vec2i_pos)
+
+
 func decrease_toughness(value: int, pos: Vector2i) -> void:
 	grid_toughness[pos.x][pos.y] -= value
 	if(grid_toughness[pos.x][pos.y] <= 0):
