@@ -53,6 +53,10 @@ config/icon="res://icon.svg"
 2d_physics/layer_2="tiles"
 2d_physics/layer_3="upgrade buildings"
 
+[physics]
+
+2d/default_gravity=2000.0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

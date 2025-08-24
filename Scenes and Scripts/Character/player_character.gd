@@ -8,8 +8,8 @@ class_name PlayerCharacter
 @onready var left_drill_ray: RayCast2D = $"Left Drill Ray"
 
 
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -400.0
+@export var SPEED = 800.0
+@export var JUMP_VELOCITY = -1000.0
 
 
 @export var drill_wait_time : float = 2.0
