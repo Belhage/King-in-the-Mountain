@@ -139,12 +139,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqwmf"]
-radius = 6.0
-height = 22.0
+radius = 3.0
+height = 14.0
 
 [node name="Player Character" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_lqeqq")
+SPEED = 100.0
+JUMP_VELOCITY = -200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oqj2")
