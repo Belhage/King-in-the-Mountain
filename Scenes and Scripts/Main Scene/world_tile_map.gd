@@ -5,12 +5,10 @@ var grid_toughness : Array
 signal tile_destroyed(tile_type : TILE_TYPES)
 
 enum TILE_TYPES {
-	GRASS,
 	DIRT,
-	STONE,
-	COPPER,
-	IRON,
-	DIAMOND
+	BLUE,
+	PINK,
+	ORANGE
 }
 
 

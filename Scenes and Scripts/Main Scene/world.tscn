@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqa4td8m2xu2l" path="res://Scenes and Scripts/Menus/hud.tscn" id="3_tices"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tices"]
-size = Vector2(40, 900)
+size = Vector2(400, 14800)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_tices")
@@ -14,25 +14,24 @@ script = ExtResource("1_tices")
 [node name="HUD" parent="." instance=ExtResource("3_tices")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -120)
+position = Vector2(0, -1600)
 anchor_mode = 0
-zoom = Vector2(3.114, 3.114)
+zoom = Vector2(0.192, 0.192)
 limit_left = 0
-limit_top = -120
-limit_right = 370
 
 [node name="World TileMap" parent="." instance=ExtResource("2_ponb5")]
 
 [node name="Player Character" parent="." instance=ExtResource("1_lsnyi")]
-position = Vector2(110, -27)
+position = Vector2(1000, -200)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-20, 330)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-180, 5470)
 shape = SubResource("RectangleShape2D_tices")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(410, 0)
+position = Vector2(6220, 5470)
 shape = SubResource("RectangleShape2D_tices")
