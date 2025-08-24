@@ -16,6 +16,19 @@ script = ExtResource("1_tices")
 player = NodePath("Player Character")
 map = NodePath("World TileMap")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.737255, 0.937255, 1)
+
 [node name="World TileMap" parent="." instance=ExtResource("2_ponb5")]
 
 [node name="Player Character" parent="." instance=ExtResource("1_lsnyi")]
