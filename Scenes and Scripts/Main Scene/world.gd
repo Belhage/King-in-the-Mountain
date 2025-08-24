@@ -12,5 +12,6 @@ func _ready() -> void:
 var inventory : int = 0
 var inventory_max : int = 100
 
-var gold : int = 0
-var gems : int = 0
+var blue_gems : int = 0
+var pink_gems : int = 0
+var orange_gems : int = 0

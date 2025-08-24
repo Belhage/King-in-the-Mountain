@@ -1,12 +1,27 @@
 extends CanvasLayer
 
-@export var inventory : int = 0
-@export var inventory_max : int = 100
+@export var inventory : int = 0:
+	set(value):
+		inventory = value
+		inventory_text()
 
-@export var blues : int = 0
-@export var pinks : int = 0
-@export var oranges : int = 0
+@export var inventory_max : int = 100:
+	set(value):
+		inventory_max = value
+		inventory_text()
 
-func _process(delta: float) -> void:
-	get_node("/root/")
-	pass
+@export var blues : int = 0 :
+	set(value):
+		blues = value
+		%blue.text = str(value)
+@export var pinks : int = 0:
+	set(value):
+		pinks = value
+		%pink.text = str(value)
+@export var oranges : int = 0:
+	set(value):
+		oranges = value
+		%orange.text = str(value)
+		
+func inventory_text() -> void:
+	%inventory.text = "Inventory: "+str(inventory)+"/"+str(inventory_max)
