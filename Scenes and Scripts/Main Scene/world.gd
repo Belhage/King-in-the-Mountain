@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name World
 
 @export var player : PlayerCharacter
 @export var map : DirtMap

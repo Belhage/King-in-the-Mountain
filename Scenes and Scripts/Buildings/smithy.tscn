@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk1561o1ml6aa"]
+
+[ext_resource type="Texture2D" uid="uid://oklcgnx04oy3" path="res://Assets/Placeholder art/housesetx1/house1x1.jpg" id="1_5cvyd"]
+[ext_resource type="Script" uid="uid://dj0wvon0cvnuw" path="res://Scenes and Scripts/Buildings/upgrade_building.gd" id="1_wb2di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cvyd"]
+size = Vector2(456, 280)
+
+[node name="Smithy" type="Node2D" node_paths=PackedStringArray("interaction_area", "upgrade_banner")]
+script = ExtResource("1_wb2di")
+interaction_area = NodePath("Area2D")
+upgrade_banner = NodePath("Panel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(231, -193)
+scale = Vector2(7.25, 7.25)
+texture = ExtResource("1_5cvyd")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(230, -147)
+shape = SubResource("RectangleShape2D_5cvyd")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 21.0
+offset_top = -523.0
+offset_right = 428.0
+offset_bottom = -407.0
