@@ -19,8 +19,13 @@ func _ready() -> void:
 	
 	
 	drill_upgrade.upgrade_purchased.connect(upgrade_purchased)
+	energy_upgrade.upgrade_purchased.connect(upgrade_purchased)
+	inventory_upgrade.upgrade_purchased.connect(upgrade_purchased)
 	
 	
+	drill_upgrade.upgrade_purchased.connect(player.player_upgraded)
+	energy_upgrade.upgrade_purchased.connect(player.player_upgraded)
+	inventory_upgrade.upgrade_purchased.connect(player.player_upgraded)
 	
 
 

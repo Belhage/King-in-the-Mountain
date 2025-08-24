@@ -35,15 +35,13 @@ color = Color(0, 0.737255, 0.937255, 1)
 position = Vector2(1315, -276)
 SPEED = 1000.0
 JUMP_VELOCITY = -1000.0
+drill_wait_time = 0.2
 drill_power = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player Character"]
 zoom = Vector2(0.5, 0.5)
 limit_left = 0
 limit_right = 6000
-
-[node name="Drill Upgrade" parent="." instance=ExtResource("5_bfhq0")]
-position = Vector2(304, -4)
 
 [node name="HUD" parent="." instance=ExtResource("3_tices")]
 unique_name_in_owner = true
@@ -58,6 +56,9 @@ shape = SubResource("RectangleShape2D_bfhq0")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(6200, 5800)
 shape = SubResource("RectangleShape2D_bfhq0")
+
+[node name="Drill Upgrade" parent="." instance=ExtResource("5_bfhq0")]
+position = Vector2(304, -4)
 
 [node name="Energy Upgrade" parent="." instance=ExtResource("6_kcb07")]
 position = Vector2(872, 0)

@@ -118,10 +118,13 @@ func _physics_process(delta: float) -> void:
 func player_upgraded(stat : UPGRADE_STATS, value, _blue, _pink, _orange) :
 	if stat == UPGRADE_STATS.DRILL_POWER :
 		drill_power += value
+		print("Drill upgraded : ", drill_power)
 	if stat == UPGRADE_STATS.ENERGY_CAPACITY :
 		energy_capacity += value
+		print("Energy upgraded : ", energy_capacity)
 	if stat == UPGRADE_STATS.INVENTORY_SIZE :
 		inventory_size += value
+		print("Inventory upgraded : ", inventory_size)
 	
 
 func energy_runout() :

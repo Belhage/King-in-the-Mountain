@@ -33,7 +33,7 @@ func show_available_upgrade(player : PlayerCharacter) :
 	upgrade_banner_text.text = "Price of upgrade :
 								%d pinkies
 								%d blues
-								%d oranges" %[1,4,2]
+								%d oranges" %[cost_of_pink_at_level[current_level], cost_of_blue_at_level[current_level], cost_of_orange_at_level[current_level]]
 	#upgrade_banner_text.text = "Price of upgrade : \n
 								#%d pinkies \n
 								#%d blues \n

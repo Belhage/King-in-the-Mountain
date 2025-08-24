@@ -32,3 +32,6 @@ func inventory_text() -> void:
 func update_energy(new_energy : float) :
 	print(new_energy)
 	energy_bar.value = new_energy
+
+func energy_capacity_upgraded(_stat, increase, blue, pink, orange) :
+	energy_bar.max_value += increase
