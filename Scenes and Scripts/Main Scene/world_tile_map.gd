@@ -7,6 +7,7 @@ signal tile_destroyed(tile_type : TILE_TYPES)
 enum TILE_TYPES {
 	GRASS,
 	DIRT,
+	STONE,
 	COPPER,
 	IRON,
 	DIAMOND
@@ -15,6 +16,14 @@ enum TILE_TYPES {
 
 func _ready() -> void:
 	var rect := get_used_rect()
+	
+	#init toughness grid
+	for x in rect.end.x:
+		grid_toughness.append([])
+		for y in rect.end.y:
+			grid_toughness[x].append(0) # Set a starter value for each position
+	
+	#get toughness value
 	for y in range(rect.position.y, rect.end.y):
 		for x in range(rect.position.x, rect.end.x):
 			var data = get_cell_tile_data(Vector2i(x,y))
