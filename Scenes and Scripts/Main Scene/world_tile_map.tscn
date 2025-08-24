@@ -10,18 +10,22 @@ separation = Vector2i(1, 1)
 texture_region_size = Vector2i(10, 10)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+1:0/0/custom_data_0 = 1
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+1:1/0/custom_data_0 = 1
 1:2/0 = 0
-0:3/0 = 0
+1:2/0/custom_data_0 = 4
 1:3/0 = 0
-0:4/0 = 0
+1:3/0/custom_data_0 = 4
 1:4/0 = 0
-0:2/0 = 0
+1:4/0/custom_data_0 = 2
 
 [sub_resource type="TileSet" id="TileSet_u4507"]
 tile_size = Vector2i(10, 10)
 physics_layer_0/collision_layer = 2
+custom_data_layer_0/name = "toughness"
+custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_5pvye")
 
 [node name="World TileMap" type="TileMapLayer"]
