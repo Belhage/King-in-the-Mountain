@@ -1,8 +1,92 @@
-[gd_scene load_steps=24 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=33 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
-[ext_resource type="Texture2D" uid="uid://8sp6og11cyi5" path="res://Assets/Tiles/Resource_blue.png" id="2_jov5t"]
+[ext_resource type="Texture2D" uid="uid://d2w8tab3i0jpi" path="res://Assets/Player_spritesheet.png" id="2_jov5t"]
 [ext_resource type="Texture2D" uid="uid://cx5lu8p7v56sa" path="res://Assets/Placeholder art/BlueMiner.png" id="2_sqwmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8jmx"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(600, 0, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkxnr"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(300, 0, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15quq"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(300, 250, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44m8f"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(0, 250, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3722g"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(300, 250, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sib1"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(600, 250, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmycs"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(900, 250, 300, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoubr"]
+atlas = ExtResource("2_jov5t")
+region = Rect2(0, 0, 300, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd3be"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8jmx")
+}],
+"loop": true,
+"name": &"Dig Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxnr")
+}],
+"loop": true,
+"name": &"Dig Right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15quq")
+}],
+"loop": true,
+"name": &"Go Right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Go Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44m8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3722g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sib1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmycs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoubr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jov5t"]
 atlas = ExtResource("2_sqwmf")
@@ -76,7 +160,7 @@ region = Rect2(0, 0, 48, 48)
 atlas = ExtResource("2_sqwmf")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3oqj2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5tdkh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -159,8 +243,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqwmf"]
-radius = 53.0
-height = 196.0
+radius = 47.0
+height = 164.0
 
 [node name="Player Character" type="CharacterBody2D"]
 collision_mask = 2
@@ -169,16 +253,18 @@ SPEED = 100.0
 JUMP_VELOCITY = -200.0
 drill_wait_time = 1.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_jov5t")
+[node name="Drill Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fd3be")
+animation = &"Idle"
+frame_progress = 0.512037
 
 [node name="Test Figure" type="AnimatedSprite2D" parent="."]
 visible = false
-sprite_frames = SubResource("SpriteFrames_3oqj2")
+sprite_frames = SubResource("SpriteFrames_5tdkh")
 animation = &"Dig Right"
-frame_progress = 0.833886
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -30)
 shape = SubResource("CapsuleShape2D_sqwmf")
 
 [node name="Down Drill Ray" type="RayCast2D" parent="."]

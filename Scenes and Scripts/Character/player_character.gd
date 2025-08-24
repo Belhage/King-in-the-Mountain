@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name PlayerCharacter
 
-@onready var test_figure: AnimatedSprite2D = $"Test Figure"
+@onready var drill_sprite: AnimatedSprite2D = $"Drill Sprite"
 
 @onready var down_drill_ray: RayCast2D = $"Down Drill Ray"
 @onready var right_drill_ray: RayCast2D = $"Right Drill Ray"
@@ -67,22 +67,23 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_pressed("Move Down") and velocity.y == 0:
 			if Input.is_action_just_pressed("Move Down"): 
-				test_figure.play("Dig Down")
+				drill_sprite.play("Dig Down")
 			drill_down()
 		else :
-			test_figure.play("Idle")
+			drill_sprite.play("Idle")
 			
-	
 	
 	
 	move_and_slide()
 	
 	if is_on_wall():
-		if Input.is_action_just_pressed("Move Right") :
-			test_figure.flip_h = false
-			test_figure.play("Dig Right")
-		elif Input.is_action_just_pressed("Move Left") :
-			test_figure.play("Dig Right")
+		#if Input.is_action_just_pressed("Move Right") :
+		if Input.is_action_pressed("Move Right") :
+			drill_sprite.flip_h = false
+			drill_sprite.play("Dig Right")
+		elif Input.is_action_pressed("Move Left") :
+			drill_sprite.flip_h = true
+			drill_sprite.play("Dig Right")
 			
 		if direction == 1 :
 			drill_right()
@@ -90,11 +91,11 @@ func _physics_process(delta: float) -> void:
 			drill_left()
 			
 	elif direction > 0 :
-		test_figure.flip_h = false
-		test_figure.play("Go Right")
+		drill_sprite.flip_h = false
+		drill_sprite.play("Go Right")
 	elif direction < 0 :
-		test_figure.flip_h = true
-		test_figure.play("Go Right")
+		drill_sprite.flip_h = true
+		drill_sprite.play("Go Right")
 
 
 func drill_down() :
