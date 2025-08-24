@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://do5x2r0oay243"]
+[gd_scene load_steps=6 format=3 uid="uid://do5x2r0oay243"]
 
 [ext_resource type="PackedScene" uid="uid://0yshlwf31tak" path="res://Scenes and Scripts/Character/player_character.tscn" id="1_lsnyi"]
 [ext_resource type="Script" uid="uid://em662dluqgs7" path="res://Scenes and Scripts/Main Scene/world.gd" id="1_tices"]
 [ext_resource type="PackedScene" uid="uid://bxok7vqsv4va1" path="res://Scenes and Scripts/Main Scene/world_tile_map.tscn" id="2_ponb5"]
 [ext_resource type="PackedScene" uid="uid://bqa4td8m2xu2l" path="res://Scenes and Scripts/Menus/hud.tscn" id="3_tices"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tices"]
+size = Vector2(40, 900)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_tices")
@@ -22,3 +25,14 @@ limit_right = 370
 
 [node name="Player Character" parent="." instance=ExtResource("1_lsnyi")]
 position = Vector2(110, -27)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-20, 330)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_tices")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(410, 0)
+shape = SubResource("RectangleShape2D_tices")
