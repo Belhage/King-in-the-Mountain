@@ -1,38 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://do5x2r0oay243"]
+[gd_scene load_steps=3 format=3 uid="uid://bd56wwd8jjouf"]
 
 [ext_resource type="PackedScene" uid="uid://0yshlwf31tak" path="res://Scenes and Scripts/Character/player_character.tscn" id="1_lsnyi"]
-[ext_resource type="Script" uid="uid://em662dluqgs7" path="res://Scenes and Scripts/Main Scene/world.gd" id="1_tices"]
 [ext_resource type="PackedScene" uid="uid://bxok7vqsv4va1" path="res://Scenes and Scripts/Main Scene/world_tile_map.tscn" id="2_ponb5"]
-[ext_resource type="PackedScene" uid="uid://bqa4td8m2xu2l" path="res://Scenes and Scripts/Menus/hud.tscn" id="3_tices"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player", "map")]
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tices"]
-size = Vector2(400, 14800)
-script = ExtResource("1_tices")
-player = NodePath("Player Character")
-map = NodePath("World TileMap")
-
-[node name="HUD" parent="." instance=ExtResource("3_tices")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -1600)
-anchor_mode = 0
-zoom = Vector2(0.192, 0.192)
-limit_left = 0
+[node name="World" type="Node2D"]
 
 [node name="World TileMap" parent="." instance=ExtResource("2_ponb5")]
 
 [node name="Player Character" parent="." instance=ExtResource("1_lsnyi")]
-position = Vector2(1100, -100)
+position = Vector2(1315, -276)
+SPEED = 1000.0
+JUMP_VELOCITY = -1000.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-20, 330)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-180, 5470)
-shape = SubResource("RectangleShape2D_tices")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(6220, 5470)
-shape = SubResource("RectangleShape2D_tices")
+[node name="Camera2D" type="Camera2D" parent="Player Character"]

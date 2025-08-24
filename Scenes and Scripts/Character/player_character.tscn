@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=24 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
 [ext_resource type="Texture2D" uid="uid://8sp6og11cyi5" path="res://Assets/Tiles/Resource_blue.png" id="2_jov5t"]
@@ -162,15 +162,13 @@ animations = [{
 radius = 53.0
 height = 196.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sqwmf"]
-radius = 19.0263
-
 [node name="Player Character" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_lqeqq")
 SPEED = 100.0
 JUMP_VELOCITY = -200.0
 drill_wait_time = 1.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_jov5t")
 
@@ -182,30 +180,6 @@ frame_progress = 0.833886
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sqwmf")
-
-[node name="Right Drill Area" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Drill Area"]
-position = Vector2(76, 0)
-shape = SubResource("CircleShape2D_sqwmf")
-
-[node name="Down Drill Area" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Down Drill Area"]
-position = Vector2(0, 121)
-shape = SubResource("CircleShape2D_sqwmf")
-
-[node name="Left Drill Area" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Drill Area"]
-position = Vector2(-76, 0)
-shape = SubResource("CircleShape2D_sqwmf")
 
 [node name="Down Drill Ray" type="RayCast2D" parent="."]
 target_position = Vector2(0, 121)
