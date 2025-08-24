@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://do5x2r0oay243"]
+[gd_scene load_steps=10 format=3 uid="uid://do5x2r0oay243"]
 
 [ext_resource type="PackedScene" uid="uid://0yshlwf31tak" path="res://Scenes and Scripts/Character/player_character.tscn" id="1_lsnyi"]
 [ext_resource type="Script" uid="uid://em662dluqgs7" path="res://Scenes and Scripts/Main Scene/world.gd" id="1_tices"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bk1561o1ml6aa" path="res://Scenes and Scripts/Buildings/smithy.tscn" id="5_bfhq0"]
 [ext_resource type="PackedScene" uid="uid://bchl64hc2ay5v" path="res://Scenes and Scripts/Buildings/energy_upgrade.tscn" id="6_kcb07"]
 [ext_resource type="PackedScene" uid="uid://bjly5sfts64lq" path="res://Scenes and Scripts/Buildings/inventory_upgrade.tscn" id="7_17rtb"]
+[ext_resource type="Texture2D" uid="uid://cp6uhmylrl5h0" path="res://Assets/Buildings/Building_castle.png" id="8_4f8m7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfhq0"]
 size = Vector2(400, 14800)
@@ -27,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0, 0.737255, 0.937255, 1)
+color = Color(0.52607, 0.87425, 1, 1)
 
 [node name="World TileMap" parent="." instance=ExtResource("2_ponb5")]
 
@@ -68,5 +69,9 @@ position = Vector2(1453, 0)
 
 [node name="Start Position" type="Node2D" parent="."]
 position = Vector2(2134, -444)
+
+[node name="BuildingCastle" type="Sprite2D" parent="."]
+position = Vector2(4802, -480)
+texture = ExtResource("8_4f8m7")
 
 [connection signal="tile_destroyed" from="World TileMap" to="." method="_on_world_tile_map_tile_destroyed"]
