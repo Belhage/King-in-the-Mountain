@@ -1,6 +1,153 @@
-[gd_scene load_steps=2 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=21 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
+[ext_resource type="Texture2D" uid="uid://cx5lu8p7v56sa" path="res://Assets/Placeholder art/BlueMiner.png" id="2_sqwmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jov5t"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctqhe"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dxn3"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjx2v"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(144, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvy0d"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5dbn"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(48, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu4g6"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(96, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q57c"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(144, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4drv"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwaka"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqx7u"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eibpq"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xilx2"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tkhd"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lye7"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk5ch"]
+atlas = ExtResource("2_sqwmf")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3oqj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jov5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctqhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dxn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjx2v")
+}],
+"loop": true,
+"name": &"Dig Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvy0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5dbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu4g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q57c")
+}],
+"loop": true,
+"name": &"Dig Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4drv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwaka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqx7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eibpq")
+}],
+"loop": true,
+"name": &"Go Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xilx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tkhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lye7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk5ch")
+}],
+"loop": true,
+"name": &"Go Up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqwmf"]
+radius = 6.0
+height = 22.0
 
 [node name="Player Character" type="CharacterBody2D"]
 script = ExtResource("1_lqeqq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3oqj2")
+animation = &"Go Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_sqwmf")
