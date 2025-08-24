@@ -13,7 +13,7 @@ upgrade_banner = NodePath("Panel")
 upgrade_banner_text = NodePath("Panel/TextEdit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(227, -307)
+position = Vector2(227, -298)
 texture = ExtResource("2_wb2di")
 
 [node name="Area2D" type="Area2D" parent="."]

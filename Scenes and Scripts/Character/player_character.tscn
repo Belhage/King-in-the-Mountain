@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=31 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
 [ext_resource type="Texture2D" uid="uid://d2w8tab3i0jpi" path="res://Assets/Player_spritesheet.png" id="2_jov5t"]
@@ -16,25 +16,17 @@ region = Rect2(300, 0, 300, 250)
 atlas = ExtResource("2_jov5t")
 region = Rect2(300, 250, 300, 250)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_44m8f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoubr"]
 atlas = ExtResource("2_jov5t")
-region = Rect2(0, 250, 300, 250)
+region = Rect2(0, 0, 300, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3722g"]
 atlas = ExtResource("2_jov5t")
 region = Rect2(300, 250, 300, 250)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1sib1"]
-atlas = ExtResource("2_jov5t")
-region = Rect2(600, 250, 300, 250)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmycs"]
 atlas = ExtResource("2_jov5t")
 region = Rect2(900, 250, 300, 250)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qoubr"]
-atlas = ExtResource("2_jov5t")
-region = Rect2(0, 0, 300, 250)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fd3be"]
 animations = [{
@@ -68,20 +60,23 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_44m8f")
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_qoubr")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_3722g")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1sib1")
-}, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_mmycs")
 }, {
-"duration": 1.0,
+"duration": 9.0,
 "texture": SubResource("AtlasTexture_qoubr")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_3722g")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_mmycs")
 }],
 "loop": true,
 "name": &"Idle",
@@ -255,9 +250,17 @@ drill_wait_time = 1.0
 
 [node name="Drill Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
+position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_fd3be")
 animation = &"Idle"
-frame_progress = 0.512037
+frame_progress = 0.806874
+
+[node name="Drill Sprite2" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_fd3be")
+animation = &"Idle"
+frame_progress = 0.61744
 
 [node name="Test Figure" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -265,17 +268,20 @@ sprite_frames = SubResource("SpriteFrames_5tdkh")
 animation = &"Dig Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -30)
+position = Vector2(-1, -22)
 shape = SubResource("CapsuleShape2D_sqwmf")
 
 [node name="Down Drill Ray" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
 target_position = Vector2(0, 121)
 collision_mask = 2
 
 [node name="Right Drill Ray" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
 target_position = Vector2(76, 0)
 collision_mask = 2
 
 [node name="Left Drill Ray" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
 target_position = Vector2(-76, 0)
 collision_mask = 2
