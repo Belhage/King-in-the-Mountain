@@ -254,6 +254,7 @@ JUMP_VELOCITY = -200.0
 drill_wait_time = 1.0
 
 [node name="Drill Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_fd3be")
 animation = &"Idle"
 frame_progress = 0.512037
