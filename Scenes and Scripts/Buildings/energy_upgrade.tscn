@@ -1,20 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk1561o1ml6aa"]
+[gd_scene load_steps=4 format=3 uid="uid://bchl64hc2ay5v"]
 
-[ext_resource type="Script" uid="uid://dj0wvon0cvnuw" path="res://Scenes and Scripts/Buildings/upgrade_building.gd" id="1_wb2di"]
-[ext_resource type="Texture2D" uid="uid://be7jwp57v5jrc" path="res://Assets/Buildings/Building_smith.png" id="2_wb2di"]
+[ext_resource type="Script" uid="uid://dj0wvon0cvnuw" path="res://Scenes and Scripts/Buildings/upgrade_building.gd" id="1_iq7so"]
+[ext_resource type="Texture2D" uid="uid://dti5g6p4o7eo6" path="res://Assets/Buildings/Building_charge.png" id="2_ybku2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cvyd"]
 size = Vector2(456, 280)
 
-[node name="Smithy" type="Node2D" node_paths=PackedStringArray("interaction_area", "upgrade_banner", "upgrade_banner_text")]
-script = ExtResource("1_wb2di")
+[node name="Energy Upgrade" type="Node2D" node_paths=PackedStringArray("interaction_area", "upgrade_banner", "upgrade_banner_text")]
+script = ExtResource("1_iq7so")
+stat_to_increase = 2
 interaction_area = NodePath("Area2D")
 upgrade_banner = NodePath("Panel")
 upgrade_banner_text = NodePath("Panel/TextEdit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(227, -307)
-texture = ExtResource("2_wb2di")
+texture = ExtResource("2_ybku2")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

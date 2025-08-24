@@ -12,6 +12,7 @@ var world : World
 
 @export var interaction_area : Area2D
 @export var upgrade_banner : Panel
+@export var upgrade_banner_text : TextEdit
 
 var current_level : int = 0
 
@@ -26,12 +27,22 @@ func _ready() -> void:
 	interaction_area.body_exited.connect(hide_available_upgrade)
 
 
-func show_available_upgrade(_player) :
+func show_available_upgrade(player : PlayerCharacter) :
+	player.charging = true
 	upgrade_banner.show()
+	upgrade_banner_text.text = "Price of upgrade :
+								%d pinkies
+								%d blues
+								%d oranges" %[1,4,2]
+	#upgrade_banner_text.text = "Price of upgrade : \n
+								#%d pinkies \n
+								#%d blues \n
+								#%d oranges" %[1,4,2]
 	#print("body entered")
 
 
-func hide_available_upgrade(_player) :
+func hide_available_upgrade(player : PlayerCharacter) :
+	player.charging = false
 	upgrade_banner.hide()
 
 
@@ -48,5 +59,5 @@ func can_afford(level : int) -> bool:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if considering_purchase and event.is_action_pressed("Purchase Upgrade") and can_afford(current_level):
-		upgrade_purchased.emit(stat_to_increase, increase_at_level[current_level])
+		upgrade_purchased.emit(stat_to_increase, increase_at_level[current_level], cost_of_blue_at_level[current_level], cost_of_pink_at_level[current_level], cost_of_orange_at_level[current_level])
 		current_level += 1

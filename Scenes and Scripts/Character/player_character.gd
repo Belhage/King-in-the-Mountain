@@ -20,9 +20,10 @@ var current_drill_wait_time : float = 0.0
 @export var drill_power : int = 1
 @export var inventory_size : int = 10
 @export var energy_capacity : float = 100
+@export var current_energy : float = 50
 
 var ready_to_drill : bool = true
-
+var charging : bool = false
 
 # Upgradeable stats
 enum UPGRADE_STATS {
@@ -33,8 +34,20 @@ enum UPGRADE_STATS {
 
 
 signal dig_at_pos(pos : Vector2, power : int)
+signal no_more_energy
+signal update_energy(new_energy : float)
 
 func _process(delta: float) -> void:
+	
+	if charging :
+		current_energy = min(current_energy + energy_drain * 10 * delta, energy_capacity)
+	else :
+		current_energy -= energy_drain * delta
+		if current_energy < 0 :
+			energy_runout()
+	
+	update_energy.emit(current_energy)
+	
 	if not ready_to_drill :
 		current_drill_wait_time -= delta
 		if current_drill_wait_time < 0 :
@@ -47,7 +60,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("Move Up") and is_on_floor():
+	#if Input.is_action_just_pressed("Move Up") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+	
+	
+	if Input.is_action_just_pressed("Move Up"):
 		velocity.y = JUMP_VELOCITY
 	
 	
@@ -97,6 +114,18 @@ func _physics_process(delta: float) -> void:
 		drill_sprite.flip_h = true
 		drill_sprite.play("Go Right")
 
+
+func player_upgraded(stat : UPGRADE_STATS, value, _blue, _pink, _orange) :
+	if stat == UPGRADE_STATS.DRILL_POWER :
+		drill_power += value
+	if stat == UPGRADE_STATS.ENERGY_CAPACITY :
+		energy_capacity += value
+	if stat == UPGRADE_STATS.INVENTORY_SIZE :
+		inventory_size += value
+	
+
+func energy_runout() :
+	no_more_energy.emit()
 
 func drill_down() :
 	

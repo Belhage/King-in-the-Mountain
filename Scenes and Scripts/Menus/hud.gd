@@ -1,4 +1,7 @@
 extends CanvasLayer
+class_name HUD
+
+@onready var energy_bar: ProgressBar = %"Energy Bar"
 
 @export var inventory : int = 0:
 	set(value):
@@ -25,3 +28,7 @@ extends CanvasLayer
 		
 func inventory_text() -> void:
 	%inventory.text = "Inventory: "+str(inventory)+"/"+str(inventory_max)
+
+func update_energy(new_energy : float) :
+	print(new_energy)
+	energy_bar.value = new_energy
