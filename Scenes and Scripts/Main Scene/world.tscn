@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://do5x2r0oay243"]
+[gd_scene load_steps=5 format=3 uid="uid://do5x2r0oay243"]
 
 [ext_resource type="PackedScene" uid="uid://0yshlwf31tak" path="res://Scenes and Scripts/Character/player_character.tscn" id="1_lsnyi"]
 [ext_resource type="Script" uid="uid://em662dluqgs7" path="res://Scenes and Scripts/Main Scene/world.gd" id="1_tices"]
 [ext_resource type="PackedScene" uid="uid://bxok7vqsv4va1" path="res://Scenes and Scripts/Main Scene/world_tile_map.tscn" id="2_ponb5"]
+[ext_resource type="PackedScene" uid="uid://bqa4td8m2xu2l" path="res://Scenes and Scripts/Menus/hud.tscn" id="3_tices"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "map")]
 script = ExtResource("1_tices")
@@ -18,3 +19,11 @@ JUMP_VELOCITY = -1000.0
 drill_power = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player Character"]
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_right = 6000
+
+[node name="HUD" parent="." instance=ExtResource("3_tices")]
+unique_name_in_owner = true
+
+[connection signal="tile_destroyed" from="World TileMap" to="." method="_on_world_tile_map_tile_destroyed"]
