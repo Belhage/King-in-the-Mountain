@@ -21,10 +21,10 @@ drill_power = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player Character"]
 
-[node name="HUD" parent="." instance=ExtResource("3_tices")]
-blues = 5
-pinks = 6
-oranges = 2
-
 [node name="Smithy" parent="." instance=ExtResource("5_bfhq0")]
 position = Vector2(304, -4)
+
+[node name="HUD" parent="." instance=ExtResource("3_tices")]
+unique_name_in_owner = true
+
+[connection signal="tile_destroyed" from="World TileMap" to="." method="_on_world_tile_map_tile_destroyed"]
