@@ -13,15 +13,15 @@ extends CanvasLayer
 @export var blues : int = 0 :
 	set(value):
 		blues = value
-		%blue.text = str(value)
+		%blue.text = ": "+str(value)
 @export var pinks : int = 0:
 	set(value):
 		pinks = value
-		%pink.text = str(value)
+		%pink.text = ": "+str(value)
 @export var oranges : int = 0:
 	set(value):
 		oranges = value
-		%orange.text = str(value)
+		%orange.text = ": "+str(value)
 		
 func inventory_text() -> void:
 	%inventory.text = "Inventory: "+str(inventory)+"/"+str(inventory_max)
