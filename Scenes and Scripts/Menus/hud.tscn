@@ -1,20 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqa4td8m2xu2l"]
+[gd_scene load_steps=5 format=3 uid="uid://bqa4td8m2xu2l"]
 
 [ext_resource type="Script" uid="uid://dkgjbhqrfodau" path="res://Scenes and Scripts/Menus/hud.gd" id="1_c4gd5"]
+[ext_resource type="Texture2D" uid="uid://8sp6og11cyi5" path="res://Assets/Tiles/Resource_blue.png" id="2_g7o8n"]
+[ext_resource type="Texture2D" uid="uid://wk5c2l3vtq0f" path="res://Assets/Tiles/Resource_pink.png" id="3_pu18k"]
+[ext_resource type="Texture2D" uid="uid://bv3ryj54evbct" path="res://Assets/Tiles/Resource_yellow.png" id="4_7hwgj"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_c4gd5")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="."]
-offset_right = 38.0
-offset_bottom = 58.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="VSplitContainer"]
-layout_mode = 2
-text = "Gems :"
-
-[node name="Label2" type="Label" parent="VSplitContainer"]
+[node name="inventory" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Inventory : 1 / 100"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_g7o8n")
+expand_mode = 2
+
+[node name="blue" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ": 0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_pu18k")
+expand_mode = 2
+
+[node name="pink" type="Label" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ": 0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_7hwgj")
+expand_mode = 2
+
+[node name="orange" type="Label" parent="VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ": 0"
