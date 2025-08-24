@@ -50,8 +50,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Move Up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	if Input.is_action_just_pressed("Move Down") and is_on_floor() and velocity.y == 0:
-		drill_down()
+	
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -61,40 +60,62 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	if direction > 0 :
+	
+
+	
+	if is_on_floor() and is_zero_approx(direction):
+		
+		if Input.is_action_pressed("Move Down") and velocity.y == 0:
+			if Input.is_action_just_pressed("Move Down"): 
+				test_figure.play("Dig Down")
+			drill_down()
+		else :
+			test_figure.play("Idle")
+			
+	
+	
+	
+	move_and_slide()
+	
+	if is_on_wall():
+		if Input.is_action_just_pressed("Move Right") :
+			test_figure.flip_h = false
+			test_figure.play("Dig Right")
+		elif Input.is_action_just_pressed("Move Left") :
+			test_figure.play("Dig Right")
+			
+		if direction == 1 :
+			drill_right()
+		elif direction == -1 :
+			drill_left()
+			
+	elif direction > 0 :
 		test_figure.flip_h = false
 		test_figure.play("Go Right")
 	elif direction < 0 :
 		test_figure.flip_h = true
 		test_figure.play("Go Right")
 
-	
-	if is_on_floor() and is_zero_approx(direction) :
-		test_figure.play("Idle")
-	
-	move_and_slide()
-	
-	if is_on_wall() :
-		if direction == 1 :
-			drill_right()
-		elif direction == - 1 :
-			drill_left()
-
 
 func drill_down() :
-	test_figure.play("Dig Down")
-	print(down_drill_ray.get_collider())
-	print(down_drill_ray.get_collision_point())
-	dig_at_pos.emit(down_drill_ray.get_collision_point(), drill_power)
+	
+	#print(down_drill_ray.get_collider())
+	#print(down_drill_ray.get_collision_point())
+	if ready_to_drill :
+		dig_at_pos.emit(down_drill_ray.get_collision_point() + Vector2(0, 0.2), drill_power)
+		ready_to_drill = false
+		current_drill_wait_time = drill_wait_time
 
 
 func drill_right() :
-	test_figure.flip_h = false
-	test_figure.play("Dig Right")
-	dig_at_pos.emit(right_drill_ray.get_collision_point(), drill_power)
+	if ready_to_drill :
+		dig_at_pos.emit(right_drill_ray.get_collision_point()  + Vector2(0.2, 0), drill_power)
+		ready_to_drill = false
+		current_drill_wait_time = drill_wait_time
 
 
 func drill_left() :
-	test_figure.flip_h = true
-	test_figure.play("Dig Right")
-	dig_at_pos.emit(left_drill_ray.get_collision_point(), drill_power)
+	if ready_to_drill :
+		dig_at_pos.emit(left_drill_ray.get_collision_point() + Vector2( - 0.2, 0), drill_power)
+		ready_to_drill = false
+		current_drill_wait_time = drill_wait_time

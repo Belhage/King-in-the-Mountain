@@ -109,7 +109,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dig Right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -169,10 +169,12 @@ collision_mask = 2
 script = ExtResource("1_lqeqq")
 SPEED = 100.0
 JUMP_VELOCITY = -200.0
+drill_wait_time = 1.0
 
 [node name="Test Figure" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oqj2")
-animation = &"Go Up"
+animation = &"Dig Right"
+frame_progress = 0.833886
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sqwmf")

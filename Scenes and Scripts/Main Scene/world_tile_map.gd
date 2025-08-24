@@ -1,4 +1,6 @@
 extends TileMapLayer
+class_name DirtMap
+
 
 var grid_toughness : Array
 
@@ -37,7 +39,9 @@ func get_drilled(drill_pos : Vector2, strength : int) :
 
 
 func decrease_toughness(value: int, pos: Vector2i) -> void:
+	print("dig at ", pos)
 	grid_toughness[pos.x][pos.y] -= value
 	if(grid_toughness[pos.x][pos.y] <= 0):
+		#tile_destroyed.emit(get_cell_tile_data(pos).get_custom_data("tile type"))
 		erase_cell(pos)
-		tile_destroyed.emit(get_cell_tile_data(pos).get_custom_data("tile type"))
+		

@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bxok7vqsv4va1" path="res://Scenes and Scripts/Main Scene/world_tile_map.tscn" id="2_ponb5"]
 [ext_resource type="PackedScene" uid="uid://bqa4td8m2xu2l" path="res://Scenes and Scripts/Menus/hud.tscn" id="3_tices"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "map")]
 script = ExtResource("1_tices")
+player = NodePath("Player Character")
+map = NodePath("World TileMap")
 
 [node name="HUD" parent="." instance=ExtResource("3_tices")]
 
