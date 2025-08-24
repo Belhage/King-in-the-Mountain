@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd56wwd8jjouf"]
+[gd_scene load_steps=7 format=3 uid="uid://do5x2r0oay243"]
 
 [ext_resource type="PackedScene" uid="uid://0yshlwf31tak" path="res://Scenes and Scripts/Character/player_character.tscn" id="1_lsnyi"]
 [ext_resource type="Script" uid="uid://em662dluqgs7" path="res://Scenes and Scripts/Main Scene/world.gd" id="1_tices"]
 [ext_resource type="PackedScene" uid="uid://bxok7vqsv4va1" path="res://Scenes and Scripts/Main Scene/world_tile_map.tscn" id="2_ponb5"]
 [ext_resource type="PackedScene" uid="uid://bqa4td8m2xu2l" path="res://Scenes and Scripts/Menus/hud.tscn" id="3_tices"]
 [ext_resource type="PackedScene" uid="uid://bk1561o1ml6aa" path="res://Scenes and Scripts/Buildings/smithy.tscn" id="5_bfhq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfhq0"]
+size = Vector2(400, 14800)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "map")]
 script = ExtResource("1_tices")
@@ -20,11 +23,25 @@ JUMP_VELOCITY = -1000.0
 drill_power = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player Character"]
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_right = 6000
 
 [node name="Smithy" parent="." instance=ExtResource("5_bfhq0")]
 position = Vector2(304, -4)
 
 [node name="HUD" parent="." instance=ExtResource("3_tices")]
 unique_name_in_owner = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-200, 5800)
+shape = SubResource("RectangleShape2D_bfhq0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(6200, 5800)
+shape = SubResource("RectangleShape2D_bfhq0")
 
 [connection signal="tile_destroyed" from="World TileMap" to="." method="_on_world_tile_map_tile_destroyed"]
