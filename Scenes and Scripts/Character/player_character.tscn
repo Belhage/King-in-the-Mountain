@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=22 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
 [ext_resource type="Texture2D" uid="uid://cx5lu8p7v56sa" path="res://Assets/Placeholder art/BlueMiner.png" id="2_sqwmf"]
@@ -142,15 +142,42 @@ animations = [{
 radius = 3.0
 height = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sqwmf"]
+radius = 3.0
+
 [node name="Player Character" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_lqeqq")
 SPEED = 100.0
 JUMP_VELOCITY = -200.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Test Figure" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oqj2")
 animation = &"Go Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sqwmf")
+
+[node name="Right Drill" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Drill"]
+position = Vector2(7, 0)
+shape = SubResource("CircleShape2D_sqwmf")
+
+[node name="Down Drill" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down Drill"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_sqwmf")
+
+[node name="Left Drill3" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Drill3"]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_sqwmf")

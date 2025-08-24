@@ -12,6 +12,7 @@ enum TILE_TYPES {
 	DIAMOND
 }
 
+
 func _ready() -> void:
 	var rect := get_used_rect()
 	for y in range(rect.position.y, rect.end.y):
