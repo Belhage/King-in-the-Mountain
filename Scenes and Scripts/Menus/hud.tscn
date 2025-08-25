@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqa4td8m2xu2l"]
+[gd_scene load_steps=8 format=3 uid="uid://bqa4td8m2xu2l"]
 
 [ext_resource type="Script" uid="uid://dkgjbhqrfodau" path="res://Scenes and Scripts/Menus/hud.gd" id="1_c4gd5"]
 [ext_resource type="Texture2D" uid="uid://8sp6og11cyi5" path="res://Assets/Tiles/Resource_blue.png" id="2_g7o8n"]
 [ext_resource type="Texture2D" uid="uid://wk5c2l3vtq0f" path="res://Assets/Tiles/Resource_pink.png" id="3_pu18k"]
 [ext_resource type="Texture2D" uid="uid://bv3ryj54evbct" path="res://Assets/Tiles/Resource_yellow.png" id="4_7hwgj"]
+[ext_resource type="Texture2D" uid="uid://cobupx3q24s0p" path="res://Assets/Placeholder art/musicOn.png" id="5_reo8b"]
+[ext_resource type="Texture2D" uid="uid://cy5m5k8wckw5q" path="res://Assets/Placeholder art/musicOff.png" id="6_xjaso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pu18k"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_c4gd5")
@@ -17,7 +21,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Inventory : 1 / 100"
+text = "Inventory : 0 / 100"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -60,5 +64,37 @@ text = ": 0"
 
 [node name="Energy Bar" type="ProgressBar" parent="VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_pu18k")
 value = 100.0
+show_percentage = false
+
+[node name="Energy Label" type="Label" parent="VBoxContainer/Energy Bar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -11.5
+offset_right = 28.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "25 /100"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+toggle_mode = true
+texture_normal = ExtResource("5_reo8b")
+texture_pressed = ExtResource("6_xjaso")
+
+[connection signal="toggled" from="TextureButton" to="." method="_on_texture_button_toggled"]

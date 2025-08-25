@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="King in the Mountain"
-run/main_scene="uid://do5x2r0oay243"
+run/main_scene="uid://c7jlvbpkpmp0j"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Sound="*res://Autoloads/sound.tscn"
 
 [input]
 

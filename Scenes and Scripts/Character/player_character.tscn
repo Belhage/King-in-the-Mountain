@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://0yshlwf31tak"]
+[gd_scene load_steps=32 format=3 uid="uid://0yshlwf31tak"]
 
 [ext_resource type="Script" uid="uid://dsghcor65rwlh" path="res://Scenes and Scripts/Character/player_character.gd" id="1_lqeqq"]
 [ext_resource type="Texture2D" uid="uid://d2w8tab3i0jpi" path="res://Assets/Player_spritesheet.png" id="2_jov5t"]
@@ -241,6 +241,17 @@ animations = [{
 radius = 47.0
 height = 164.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jov5t"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 26.16
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.77
+scale_max = 3.77
+color = Color(1, 1, 0.392157, 1)
+
 [node name="Player Character" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_lqeqq")
@@ -252,8 +263,9 @@ drill_wait_time = 1.0
 z_index = 1
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_fd3be")
-animation = &"Idle"
-frame_progress = 0.288787
+animation = &"Dig Right"
+frame_progress = 0.663963
+flip_h = true
 
 [node name="Test Figure" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -274,7 +286,63 @@ position = Vector2(0, 8)
 target_position = Vector2(76, 0)
 collision_mask = 2
 
+[node name="Anticipation Right Drill Ray" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
+target_position = Vector2(300, 0)
+collision_mask = 2
+
 [node name="Left Drill Ray" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
 target_position = Vector2(-76, 0)
 collision_mask = 2
+
+[node name="Anticipation Left Drill Ray" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
+target_position = Vector2(-318, 1)
+collision_mask = 2
+
+[node name="Right Sparkles" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(143, -8)
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jov5t")
+
+[node name="Left Sparkles" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(-133, -8)
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jov5t")
+
+[node name="Down Sparkles" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(0, 104)
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jov5t")
+
+[node name="Runout Text" type="TextEdit" parent="."]
+visible = false
+z_index = 1
+offset_left = -438.0
+offset_top = -342.0
+offset_right = 576.0
+offset_bottom = -129.0
+theme_override_font_sizes/font_size = 30
+text = "Oh No, you ran out of energy!!
+
+You lost all your current gems!
+Luckily you kept your upgrades, but be more careful in the future !"
+
+[node name="Runout Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Runout Timer" to="." method="_on_runout_timer_timeout"]

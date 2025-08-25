@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://do5x2r0oay243"]
+[gd_scene load_steps=17 format=3 uid="uid://do5x2r0oay243"]
 
 [ext_resource type="PackedScene" uid="uid://0yshlwf31tak" path="res://Scenes and Scripts/Character/player_character.tscn" id="1_lsnyi"]
 [ext_resource type="Script" uid="uid://em662dluqgs7" path="res://Scenes and Scripts/Main Scene/world.gd" id="1_tices"]
@@ -8,9 +8,39 @@
 [ext_resource type="PackedScene" uid="uid://bchl64hc2ay5v" path="res://Scenes and Scripts/Buildings/energy_upgrade.tscn" id="6_kcb07"]
 [ext_resource type="PackedScene" uid="uid://bjly5sfts64lq" path="res://Scenes and Scripts/Buildings/inventory_upgrade.tscn" id="7_17rtb"]
 [ext_resource type="Texture2D" uid="uid://cp6uhmylrl5h0" path="res://Assets/Buildings/Building_castle.png" id="8_4f8m7"]
+[ext_resource type="Script" uid="uid://dtivfqjt6w22g" path="res://Resources/Upgrade Resource.gd" id="8_onpww"]
+[ext_resource type="Script" uid="uid://csh5oh2kscp1h" path="res://Scenes and Scripts/Buildings/castle.gd" id="9_w86ij"]
+[ext_resource type="PackedScene" uid="uid://ca7w0en1yxljr" path="res://Scenes and Scripts/Menus/end_game_screen.tscn" id="11_kndm5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfhq0"]
 size = Vector2(400, 14800)
+
+[sub_resource type="Resource" id="Resource_w86ij"]
+script = ExtResource("8_onpww")
+stat_increase = 1
+blue_cost = 2
+pink_cost = 2
+orange_cost = 2
+metadata/_custom_type_script = "uid://dtivfqjt6w22g"
+
+[sub_resource type="Resource" id="Resource_onpww"]
+script = ExtResource("8_onpww")
+stat_increase = 10
+blue_cost = 3
+pink_cost = 3
+orange_cost = 3
+metadata/_custom_type_script = "uid://dtivfqjt6w22g"
+
+[sub_resource type="Resource" id="Resource_kndm5"]
+script = ExtResource("8_onpww")
+stat_increase = 2
+blue_cost = 2
+pink_cost = 2
+orange_cost = 2
+metadata/_custom_type_script = "uid://dtivfqjt6w22g"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onpww"]
+size = Vector2(804, 472)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "map")]
 script = ExtResource("1_tices")
@@ -38,6 +68,8 @@ SPEED = 1000.0
 JUMP_VELOCITY = -1000.0
 drill_wait_time = 0.2
 drill_power = 3
+energy_capacity = 20.0
+current_energy = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="Player Character"]
 zoom = Vector2(0.5, 0.5)
@@ -60,18 +92,50 @@ shape = SubResource("RectangleShape2D_bfhq0")
 
 [node name="Drill Upgrade" parent="." instance=ExtResource("5_bfhq0")]
 position = Vector2(304, -4)
+cost_and_stat_increase_at_level = Array[Object]([SubResource("Resource_w86ij")])
 
 [node name="Energy Upgrade" parent="." instance=ExtResource("6_kcb07")]
 position = Vector2(872, 0)
+cost_and_stat_increase_at_level = Array[Object]([SubResource("Resource_onpww")])
 
 [node name="Inventory Upgrade" parent="." instance=ExtResource("7_17rtb")]
 position = Vector2(1453, 0)
+cost_and_stat_increase_at_level = Array[Object]([SubResource("Resource_kndm5")])
 
 [node name="Start Position" type="Node2D" parent="."]
 position = Vector2(2134, -444)
 
-[node name="BuildingCastle" type="Sprite2D" parent="."]
-position = Vector2(4802, -480)
+[node name="Castle" type="Node2D" parent="."]
+position = Vector2(4980, -480)
+script = ExtResource("9_w86ij")
+
+[node name="BuildingCastle" type="Sprite2D" parent="Castle"]
 texture = ExtResource("8_4f8m7")
 
+[node name="Interaction Area" type="Area2D" parent="Castle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle/Interaction Area"]
+position = Vector2(1, 226)
+shape = SubResource("RectangleShape2D_onpww")
+
+[node name="Panel" type="Panel" parent="Castle"]
+visible = false
+offset_left = -823.0
+offset_top = -13.0
+offset_right = -416.0
+offset_bottom = 103.0
+
+[node name="TextEdit" type="TextEdit" parent="Castle/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="End Game Screen" parent="." instance=ExtResource("11_kndm5")]
+visible = false
+
 [connection signal="tile_destroyed" from="World TileMap" to="." method="_on_world_tile_map_tile_destroyed"]
+[connection signal="body_entered" from="Castle/Interaction Area" to="Castle" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Castle/Interaction Area" to="Castle" method="_on_interaction_area_body_exited"]

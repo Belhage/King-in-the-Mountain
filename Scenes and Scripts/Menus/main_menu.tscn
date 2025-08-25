@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7jlvbpkpmp0j"]
+
+[ext_resource type="Texture2D" uid="uid://dsocow20lhsg7" path="res://Assets/Placeholder art/Screenshot 2025-08-25 141411.png" id="1_6aoq2"]
+[ext_resource type="Script" uid="uid://b738rkhh56070" path="res://Scenes and Scripts/Menus/main_menu.gd" id="1_yeqeu"]
+[ext_resource type="Theme" uid="uid://cinf2fbjdsjva" path="res://Resources/Menu Theme.tres" id="2_ir7wj"]
+[ext_resource type="Texture2D" uid="uid://b2624gfwor425" path="res://Assets/Placeholder art/cross.png" id="3_w7hc2"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yeqeu")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6aoq2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = -126.0
+offset_right = 392.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ir7wj")
+text = "Start New Game"
+
+[node name="About Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ir7wj")
+text = "About"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="About Section" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="About Section"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.392157)
+
+[node name="TextEdit" type="TextEdit" parent="About Section"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Art :
+Mathilde
+
+Programming :
+Jack
+Erik Belhage"
+
+[node name="TextureButton" type="TextureButton" parent="About Section/TextEdit"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_w7hc2")
+
+[connection signal="pressed" from="VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/About Button" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="About Section/TextEdit/TextureButton" to="." method="_on_texture_button_pressed"]

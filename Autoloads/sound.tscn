@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb123rogm24wo"]
+
+[ext_resource type="Script" uid="uid://d3wom6uopg42l" path="res://Autoloads/sound.gd" id="1_je8aa"]
+[ext_resource type="AudioStream" uid="uid://j8t6xyefvfbe" path="res://Assets/Sound/Drill cut.wav" id="2_wlbn5"]
+
+[node name="Sound" type="Node"]
+script = ExtResource("1_je8aa")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wlbn5")

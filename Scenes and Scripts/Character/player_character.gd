@@ -6,6 +6,16 @@ class_name PlayerCharacter
 @onready var down_drill_ray: RayCast2D = $"Down Drill Ray"
 @onready var right_drill_ray: RayCast2D = $"Right Drill Ray"
 @onready var left_drill_ray: RayCast2D = $"Left Drill Ray"
+@onready var anticipation_right_drill_ray: RayCast2D = $"Anticipation Right Drill Ray"
+@onready var anticipation_left_drill_ray: RayCast2D = $"Anticipation Left Drill Ray"
+
+
+@onready var right_sparkles: GPUParticles2D = $"Right Sparkles"
+@onready var left_sparkles: GPUParticles2D = $"Left Sparkles"
+@onready var down_sparkles: GPUParticles2D = $"Down Sparkles"
+
+@onready var runout_timer: Timer = $"Runout Timer"
+@onready var runout_text: TextEdit = $"Runout Text"
 
 
 @export var SPEED = 800.0
@@ -40,7 +50,7 @@ signal update_energy(new_energy : float)
 func _process(delta: float) -> void:
 	
 	if charging :
-		current_energy = min(current_energy + energy_drain * 10 * delta, energy_capacity)
+		current_energy = min(current_energy + 10 * delta * energy_capacity/100, energy_capacity)
 	else :
 		current_energy -= energy_drain * delta
 		if current_energy < 0 :
@@ -83,11 +93,14 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and is_zero_approx(direction):
 		
 		if Input.is_action_pressed("Move Down") and velocity.y == 0:
-			if Input.is_action_just_pressed("Move Down"): 
-				drill_sprite.play("Dig Down")
+			drill_sprite.play("Dig Down")
+			down_sparkles.emitting = true
+			Sound.play_drill()
+				
 			drill_down()
 		else :
 			drill_sprite.play("Idle")
+			Sound.stop_drill()
 			
 	
 	
@@ -98,9 +111,13 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("Move Right") :
 			drill_sprite.flip_h = false
 			drill_sprite.play("Dig Right")
+			right_sparkles.emitting = true
+			Sound.play_drill()
 		elif Input.is_action_pressed("Move Left") :
 			drill_sprite.flip_h = true
 			drill_sprite.play("Dig Right")
+			left_sparkles.emitting = true
+			Sound.play_drill()
 			
 		if direction == 1 :
 			drill_right()
@@ -110,9 +127,13 @@ func _physics_process(delta: float) -> void:
 	elif direction > 0 :
 		drill_sprite.flip_h = false
 		drill_sprite.play("Go Right")
+		if not anticipation_right_drill_ray.is_colliding() :
+			Sound.stop_drill()
 	elif direction < 0 :
 		drill_sprite.flip_h = true
 		drill_sprite.play("Go Right")
+		if not anticipation_left_drill_ray.is_colliding() :
+			Sound.stop_drill()
 
 
 func player_upgraded(stat : UPGRADE_STATS, value, _blue, _pink, _orange) :
@@ -129,6 +150,8 @@ func player_upgraded(stat : UPGRADE_STATS, value, _blue, _pink, _orange) :
 
 func energy_runout() :
 	no_more_energy.emit()
+	runout_text.show()
+	runout_timer.start()
 
 func drill_down() :
 	
@@ -152,3 +175,7 @@ func drill_left() :
 		dig_at_pos.emit(left_drill_ray.get_collision_point() + Vector2( - 0.2, 0), drill_power)
 		ready_to_drill = false
 		current_drill_wait_time = drill_wait_time
+
+
+func _on_runout_timer_timeout() -> void:
+	runout_text.hide()
